@@ -1,5 +1,5 @@
 import React from "react";
-import Bin from "../../assets/Images/Bin.png";
+import Bin from "../../assets/Images/Delete.png";
 
 function Delete() {
   return (
