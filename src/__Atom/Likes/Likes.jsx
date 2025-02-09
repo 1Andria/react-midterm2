@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Plus from "../../assets/Images/+.png";
-import Minus from "../../assets/Images/-.png";
+import Plus from "../../assets/Images/Plus.png";
+import Minus from "../../assets/Images/Minus.png";
 
 function Likes({ commentId }) {
   const LikeKey = `likes-${commentId}`;
