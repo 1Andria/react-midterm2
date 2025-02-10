@@ -8,10 +8,10 @@ function Container() {
     return JSON.parse(localStorage.getItem("comment")) || [];
   });
   const [commentValue, setCommentValue] = useState("");
-  const [deleteDiv, setDelteDiv] = useState(false);
+  const [deleteDiv, setDeleteDiv] = useState(false);
 
   function DivAppear() {
-    setDelteDiv(!deleteDiv);
+    setDeleteDiv(!deleteDiv);
   }
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Container() {
     e.preventDefault();
     if (commentValue.trim() === "") {
       alert("you should enter something");
-      setTaskInp("");
+      setCommentValue("");
       return;
     }
     const newComment = {
@@ -40,8 +40,7 @@ function Container() {
   }
 
   const DeleteComment = (id) => {
-    setComment(comment.filter((com) => com.id !== id));
-    setDelteDiv(false);
+    setComment(comment.filter((comment) => comment.id !== id));
   };
 
   return (
@@ -60,11 +59,7 @@ function Container() {
           commentValue={commentValue}
         />
         {deleteDiv && (
-          <DeleteDiv
-            DivAppear={DivAppear}
-            DeleteComment={DeleteComment}
-            comment={comment}
-          />
+          <DeleteDiv DivAppear={DivAppear} DeleteComment={DeleteComment} />
         )}
       </div>
     </>

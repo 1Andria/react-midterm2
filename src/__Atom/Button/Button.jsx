@@ -6,7 +6,7 @@ function Button({ btnText, onClick, btnColor, btnWidth }) {
       <button
         onClick={onClick}
         type="button"
-        className={`w-[${btnWidth}] h-[48px] border-none rounded-lg bg-[${btnColor}] text-white hover:cursor-pointer`}
+        className={`${btnWidth} h-[48px] border-none rounded-lg ${btnColor} text-white hover:cursor-pointer`}
       >
         {btnText}
       </button>

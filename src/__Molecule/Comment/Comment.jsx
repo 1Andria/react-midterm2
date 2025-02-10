@@ -14,8 +14,8 @@ function Comment({ commentValue, AddComment, setCommentValue }) {
         <Button
           onClick={AddComment}
           btnText="SEND"
-          btnColor="#5357B6"
-          btnWidth="104px"
+          btnColor="bg-[#5357B6]"
+          btnWidth="w-[104px]"
         />
       </div>
     </>
