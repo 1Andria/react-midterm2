@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import Button from "../../__Atom/Button/Button";
 
-function DeleteDiv({ DivAppear, DeleteComment }) {
+function DeleteDiv({ DivAppear, DeleteComment, comment }) {
   const deleteRef = useRef(null);
+
   function outsideClick(event) {
     if (!deleteRef.current.contains(event.target)) {
       DivAppear();
@@ -10,9 +11,14 @@ function DeleteDiv({ DivAppear, DeleteComment }) {
   }
   document.addEventListener("mousedown", outsideClick);
 
+  function TaskDeleted() {
+    DeleteComment(comment.id);
+    DivAppear();
+  }
+
   return (
     <>
-      <div className=" w-full absolute h-full bg-[rgba(0,0,0,0.5)]  top-[0px] flex justify-center items-center">
+      <div className=" w-full absolute h-full bg-[rgba(0,0,0,0.5)] left-0 top-[0px] flex justify-center items-center">
         <div
           ref={deleteRef}
           className="h-[252px] rounded-lg max-w-[400px] w-full bg-white p-[32px] flex flex-col justify-between "
@@ -35,7 +41,7 @@ function DeleteDiv({ DivAppear, DeleteComment }) {
               btnText="YES,DELETE"
               btnColor="bg-[#ED6368]"
               btnWidth="w-[161px]"
-              onClick={DeleteComment}
+              onClick={TaskDeleted}
             />
           </div>
         </div>

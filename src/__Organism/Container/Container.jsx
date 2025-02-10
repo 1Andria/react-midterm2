@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Comment from "../../__Molecule/Comment/Comment";
 import NewComment from "../../__Molecule/NewComment/NewComment";
-import DeleteDiv from "../../__Molecule/DeleteDiv/DeleteDiv";
 
 function Container() {
   const [comment, setComment] = useState(() => {
     return JSON.parse(localStorage.getItem("comment")) || [];
   });
   const [commentValue, setCommentValue] = useState("");
-  const [deleteDiv, setDeleteDiv] = useState(false);
-
-  function DivAppear() {
-    setDeleteDiv(!deleteDiv);
-  }
 
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comment")) || [];
@@ -40,16 +34,20 @@ function Container() {
   }
 
   const DeleteComment = (id) => {
-    setComment(comment.filter((comment) => comment.id !== id));
+    setComment(comment.filter((com) => com.id !== id));
   };
 
   return (
     <>
       <div className="w-[100%] gap-[20px] h-screen bg-[#F5F6FA] flex flex-col justify-between items-center pb-[64px] pt-[64px]">
-        <div className="max-w-[730px] w-full overflow-y-auto">
+        <div className="max-w-[730px] w-full flex flex-col gap-[20px] overflow-y-auto">
           {comment.map((coment, key) => {
             return (
-              <NewComment key={key} comment={coment} DivAppear={DivAppear} />
+              <NewComment
+                key={key}
+                comment={coment}
+                DeleteComment={DeleteComment}
+              />
             );
           })}
         </div>
@@ -58,9 +56,6 @@ function Container() {
           setCommentValue={setCommentValue}
           commentValue={commentValue}
         />
-        {deleteDiv && (
-          <DeleteDiv DivAppear={DivAppear} DeleteComment={DeleteComment} />
-        )}
       </div>
     </>
   );

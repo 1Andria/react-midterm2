@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Likes from "../../__Atom/Likes/Likes";
 import Personal from "../../__Atom/Personal/Personal";
 import Reply from "../../__Atom/Reply/Reply";
 import Delete from "../../__Atom/Delete/Delete";
 import Edit from "../../__Atom/Edit/Edit";
+import DeleteDiv from "../DeleteDiv/DeleteDiv";
 
-function NewComment({ comment, DivAppear }) {
+function NewComment({ comment, DeleteComment }) {
+  const [deleteDiv, setDeleteDiv] = useState(false);
+  function DivAppear() {
+    setDeleteDiv(!deleteDiv);
+  }
+
   return (
     <>
       <div className="max-w-[730px] w-full h-[144px] bg-white p-[24px] flex justify-between rounded-lg ">
@@ -24,6 +30,13 @@ function NewComment({ comment, DivAppear }) {
           </div>
         </div>
       </div>
+      {deleteDiv && (
+        <DeleteDiv
+          DivAppear={DivAppear}
+          comment={comment}
+          DeleteComment={DeleteComment}
+        />
+      )}
     </>
   );
 }
