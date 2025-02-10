@@ -1,12 +1,12 @@
 import React from "react";
 
-function Button({ btnText, AddComment }) {
+function Button({ btnText, onClick, btnColor, btnWidth }) {
   return (
     <>
       <button
-        onClick={AddComment}
+        onClick={onClick}
         type="button"
-        className=" w-[104px] h-[48px] border-none rounded-lg bg-[#5357B6] text-white"
+        className={`w-[${btnWidth}] h-[48px] border-none rounded-lg bg-[${btnColor}] text-white hover:cursor-pointer`}
       >
         {btnText}
       </button>

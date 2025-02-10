@@ -5,7 +5,7 @@ import Reply from "../../__Atom/Reply/Reply";
 import Delete from "../../__Atom/Delete/Delete";
 import Edit from "../../__Atom/Edit/Edit";
 
-function NewComment({ comment }) {
+function NewComment({ comment, DivAppear }) {
   return (
     <>
       <div className="max-w-[730px] w-full h-[144px] bg-white p-[24px] flex justify-between rounded-lg ">
@@ -15,7 +15,7 @@ function NewComment({ comment }) {
             <Personal comment={comment} />
             <div className="flex gap-[7px]">
               <Reply />
-              <Delete />
+              <Delete onClick={DivAppear} />
               <Edit />
             </div>
           </div>
