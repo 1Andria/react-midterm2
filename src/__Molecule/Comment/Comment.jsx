@@ -2,7 +2,7 @@ import React from "react";
 import Person from "../../assets/Images/Person.png";
 import CommentInput from "../../__Atom/CommentInput/CommentInput";
 import Button from "../../__Atom/Button/Button";
-function Comment({ commentValue, AddComment, setCommentValue }) {
+function Comment({ commentValue, AddComment, setCommentValue, btnText }) {
   return (
     <>
       <div className="max-w-[730px] w-full h-[144px] bg-white p-[24px] flex justify-between rounded-lg ">
@@ -13,7 +13,7 @@ function Comment({ commentValue, AddComment, setCommentValue }) {
         />
         <Button
           onClick={AddComment}
-          btnText="SEND"
+          btnText={btnText}
           btnColor="bg-[#5357B6]"
           btnWidth="w-[104px]"
         />

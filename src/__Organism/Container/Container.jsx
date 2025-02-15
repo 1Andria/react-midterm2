@@ -8,6 +8,8 @@ function Container() {
   });
   const [commentValue, setCommentValue] = useState("");
 
+  const [replyed, setReplyed] = useState(null);
+
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comment")) || [];
     setComment(storedComments);
@@ -28,9 +30,27 @@ function Container() {
       time: Date().slice(3, Date().length - 36),
       information: commentValue,
       id: Date.now(),
+      reply: [],
     };
     setComment([...comment, newComment]);
     setCommentValue("");
+  }
+  function AddReply(replyText, parentId) {
+    if (replyText.trim() === "") return;
+
+    const newReply = {
+      time: new Date().toLocaleString(),
+      information: replyText,
+      id: Date.now(),
+      reply: [],
+    };
+
+    setComment(
+      comment.map((com) =>
+        com.id === parentId ? { ...com, reply: [...com.reply, newReply] } : com
+      )
+    );
+    setReplyed(null);
   }
 
   const DeleteComment = (id) => {
@@ -47,6 +67,10 @@ function Container() {
                 key={key}
                 comment={coment}
                 DeleteComment={DeleteComment}
+                width="`max-w-[730px]"
+                setReplyed={setReplyed}
+                replyed={replyed}
+                AddReply={AddReply}
               />
             );
           })}
@@ -55,6 +79,7 @@ function Container() {
           AddComment={AddComment}
           setCommentValue={setCommentValue}
           commentValue={commentValue}
+          btnText="SEND"
         />
       </div>
     </>
