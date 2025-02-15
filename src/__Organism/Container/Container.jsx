@@ -35,27 +35,44 @@ function Container() {
     setComment([...comment, newComment]);
     setCommentValue("");
   }
+
   function AddReply(replyText, parentId) {
     if (replyText.trim() === "") return;
 
     const newReply = {
-      time: new Date().toLocaleString(),
+      time: Date().slice(3, Date().length - 36),
       information: replyText,
       id: Date.now(),
       reply: [],
     };
 
-    setComment(
-      comment.map((com) =>
-        com.id === parentId ? { ...com, reply: [...com.reply, newReply] } : com
-      )
-    );
+    function addReply(comments) {
+      return comments.map((com) => {
+        if (com.id === parentId) {
+          return { ...com, reply: [...com.reply, newReply] };
+        } else if (com.reply.length > 0) {
+          return { ...com, reply: [...com.reply, newReply] };
+        }
+        return com;
+      });
+    }
+
+    setComment(addReply(comment));
     setReplyed(null);
   }
 
-  const DeleteComment = (id) => {
-    setComment(comment.filter((com) => com.id !== id));
-  };
+  function DeleteComment(id) {
+    function Delete(comments) {
+      return comments
+        .filter((com) => com.id !== id)
+        .map((com) => ({
+          ...com,
+          reply: Delete(com.reply),
+        }));
+    }
+
+    setComment(Delete(comment));
+  }
 
   return (
     <>
@@ -67,7 +84,7 @@ function Container() {
                 key={key}
                 comment={coment}
                 DeleteComment={DeleteComment}
-                width="`max-w-[730px]"
+                width="max-w-[730px]"
                 setReplyed={setReplyed}
                 replyed={replyed}
                 AddReply={AddReply}

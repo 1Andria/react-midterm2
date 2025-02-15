@@ -16,7 +16,7 @@ function NewComment({
   AddReply,
 }) {
   const [deleteDiv, setDeleteDiv] = useState(false);
-  const [replyValue, setReplyValue] = useState("");
+  const [replyValue, setReplyValue] = useState("@Mike ");
 
   function DivAppear() {
     setDeleteDiv(!deleteDiv);
@@ -62,13 +62,13 @@ function NewComment({
       <div className="pl-[45px]">
         <div className="flex justify-end border-l-[2px] border-l-[#E9EBF0] ">
           {comment.reply.length > 0 && (
-            <div className="ml-[40px] flex flex-col gap-[10px] max-w-[642px]">
+            <div className="flex flex-col gap-[10px] max-w-[632px] w-full">
               {comment.reply.map((reply) => (
                 <NewComment
                   key={reply.id}
                   comment={reply}
                   DeleteComment={DeleteComment}
-                  width="max-w-[642px]"
+                  width="max-w-[632px]"
                   setReplyed={setReplyed}
                   replyed={replyed}
                   AddReply={AddReply}
