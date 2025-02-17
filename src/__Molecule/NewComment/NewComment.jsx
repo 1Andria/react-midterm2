@@ -28,7 +28,9 @@ function NewComment({ comment, DeleteComment, replyed, setReplyed, AddReply }) {
 
   function EditActive() {
     setEdit(!edit);
-    textareaRef.current.focus();
+    setTimeout(() => {
+      textareaRef.current.focus();
+    }, 10);
   }
 
   function EditComment() {
