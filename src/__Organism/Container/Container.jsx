@@ -51,7 +51,7 @@ function Container() {
         if (com.id === parentId) {
           return { ...com, reply: [...com.reply, newReply] };
         } else if (com.reply.length > 0) {
-          return { ...com, reply: [...com.reply, newReply] };
+          return { ...com, reply: addReply(com.reply) };
         }
         return com;
       });
@@ -84,7 +84,6 @@ function Container() {
                 key={key}
                 comment={coment}
                 DeleteComment={DeleteComment}
-                width="max-w-[730px]"
                 setReplyed={setReplyed}
                 replyed={replyed}
                 AddReply={AddReply}

@@ -8,7 +8,7 @@ function CommentInput({ commentValue, setCommentValue }) {
         value={commentValue}
         onChange={(e) => setCommentValue(e.target.value)}
         placeholder="Add a comment... "
-        className="h-full rounded-lg  w-full border border-[#E9EBF0] pl-[24px] pt-[12px] resize-none  "
+        className="h-full rounded-lg  w-full border border-[#E9EBF0] pl-[24px] pr-[24px] pt-[12px] resize-none  "
       />
     </div>
   );
