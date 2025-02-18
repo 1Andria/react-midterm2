@@ -15,9 +15,10 @@ function NewComment({
   setReplyed,
   AddReply,
   setComment,
+  name,
 }) {
   const [deleteDiv, setDeleteDiv] = useState(false);
-  const [replyValue, setReplyValue] = useState("@Mike ");
+  const [replyValue, setReplyValue] = useState(`@${name} `);
   const [edit, setEdit] = useState(false);
   const [editTxt, setEditTxt] = useState(comment.information);
   const textareaRef = useRef(null);
@@ -55,13 +56,13 @@ function NewComment({
       <div
         className={`max-w-[730px] w-full h-auto bg-white p-[24px] flex justify-between gap-[5px] rounded-lg `}
       >
-        <div className="max-[585px]:hidden">
+        <div className="max-[620px]:hidden">
           <Likes commentId={comment.id} />
         </div>
         <div className="flex flex-col max-w-[618px] w-full">
           <div className="flex justify-between">
-            <Personal comment={comment} />
-            <div className="flex gap-[10px] max-[585px]:hidden">
+            <Personal comment={comment} name={name} />
+            <div className="flex gap-[10px] max-[620px]:hidden">
               <Reply
                 setEdit={setEdit}
                 edit={edit}
@@ -102,9 +103,9 @@ function NewComment({
               />
             </div>
           )}
-          <div className="flex w-full justify-between items-center min-[585px]:hidden pt-[20px]">
+          <div className="flex w-full justify-between items-center min-[620px]:hidden pt-[20px]">
             <Likes />
-            <div className="flex gap-[15px] ">
+            <div className="flex gap-[15px] max-[400px]:gap-[30px] ">
               <Reply
                 setEdit={setEdit}
                 edit={edit}
@@ -126,7 +127,7 @@ function NewComment({
         />
       )}
 
-      <div className="pl-[45px] max-[585px]:pl-[10px]">
+      <div className="pl-[45px] max-[620px]:pl-[10px]">
         <div className="flex justify-end pl-[10px] border-l-[2px] border-l-[#E9EBF0] ">
           {comment.reply.length > 0 && (
             <div className="ml-[40px] flex flex-col gap-[10px] max-w-[632px] w-full">
@@ -139,6 +140,7 @@ function NewComment({
                   setReplyed={setReplyed}
                   replyed={replyed}
                   AddReply={AddReply}
+                  name={name}
                 />
               ))}
             </div>

@@ -9,7 +9,9 @@ function Delete({ onClick }) {
         onClick={onClick}
       >
         <img src={Bin} className="h-[14px] w-[12px]" alt="reply" />
-        <h3 className="text-[#ED6368] text-base font-normal">Delete</h3>
+        <h3 className="text-[#ED6368] text-base font-normal max-[400px]:hidden">
+          Delete
+        </h3>
       </div>
     </>
   );

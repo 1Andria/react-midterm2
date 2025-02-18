@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Comment from "../../__Molecule/Comment/Comment";
 import NewComment from "../../__Molecule/NewComment/NewComment";
+import EnterName from "../../__Molecule/EnterName/EnterName";
 
 function Container() {
   const [comment, setComment] = useState(() => {
@@ -8,6 +9,8 @@ function Container() {
   });
   const [commentValue, setCommentValue] = useState("");
   const [replyed, setReplyed] = useState(null);
+  const [name, setName] = useState("");
+  const [nameDiv, setNameDiv] = useState(true);
 
   useEffect(() => {
     const storedComments = JSON.parse(localStorage.getItem("comment")) || [];
@@ -17,6 +20,14 @@ function Container() {
   useEffect(() => {
     localStorage.setItem("comment", JSON.stringify(comment));
   }, [comment]);
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("name");
+    if (storedName) {
+      setName(storedName);
+      setNameDiv(false);
+    }
+  }, []);
 
   function AddComment(e) {
     e.preventDefault();
@@ -28,6 +39,7 @@ function Container() {
     const newComment = {
       information: commentValue,
       id: Date.now(),
+      author: name,
       reply: [],
     };
     setComment([...comment, newComment]);
@@ -40,6 +52,8 @@ function Container() {
     const newReply = {
       information: replyText,
       id: Date.now(),
+      author: name,
+
       reply: [],
     };
 
@@ -71,6 +85,20 @@ function Container() {
     setComment(Delete(comment));
   }
 
+  function ChangeName() {
+    if (name.trim() === "") {
+      alert("Please enter your name!");
+      setName("");
+      return;
+    } else if (!isNaN(name)) {
+      alert("Please enter valid name!");
+      setName("");
+      return;
+    }
+    localStorage.setItem("name", name);
+    setNameDiv(false);
+  }
+
   return (
     <>
       <div className="  w-full gap-[20px] h-screen bg-[#F5F6FA] flex flex-col justify-between pl-[10px] pr-[10px] items-center pb-[64px] pt-[64px]">
@@ -93,6 +121,7 @@ function Container() {
                 replyed={replyed}
                 AddReply={AddReply}
                 setComment={setComment}
+                name={name}
               />
             );
           })}
@@ -103,6 +132,9 @@ function Container() {
           commentValue={commentValue}
           btnText="SEND"
         />
+        {nameDiv && (
+          <EnterName name={name} setName={setName} ChangeName={ChangeName} />
+        )}
       </div>
     </>
   );
