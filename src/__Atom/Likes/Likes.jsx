@@ -23,7 +23,7 @@ function Likes({ commentId }) {
 
   return (
     <>
-      <div className=" w-[40px] h-[100px] rounded-[10px] bg-[#F5F6FA] flex flex-col justify-evenly items-center ">
+      <div className=" w-[40px] h-[100px] rounded-[10px] bg-[#F5F6FA] flex flex-col justify-evenly items-center max-[585px]:flex-row max-[585px]:h-[40px] max-[585px]:w-[100px] ">
         <button onClick={PlusLike} className=" h-[12px] w-[11px]">
           <img
             src={Plus}

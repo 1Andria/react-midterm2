@@ -1,7 +1,7 @@
 import React from "react";
 import ReplyImg from "../../assets/Images/Reply.png";
 
-function Reply({ onClick, setEdit, edit }) {
+function Reply({ onClick, setEdit }) {
   function ReplyFunc() {
     onClick();
     setEdit(false);

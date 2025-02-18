@@ -7,7 +7,6 @@ function Container() {
     return JSON.parse(localStorage.getItem("comment")) || [];
   });
   const [commentValue, setCommentValue] = useState("");
-
   const [replyed, setReplyed] = useState(null);
 
   useEffect(() => {
@@ -27,7 +26,6 @@ function Container() {
       return;
     }
     const newComment = {
-      time: Date().slice(3, Date().length - 36),
       information: commentValue,
       id: Date.now(),
       reply: [],
@@ -40,7 +38,6 @@ function Container() {
     if (replyText.trim() === "") return;
 
     const newReply = {
-      time: Date().slice(3, Date().length - 36),
       information: replyText,
       id: Date.now(),
       reply: [],
@@ -76,8 +73,16 @@ function Container() {
 
   return (
     <>
-      <div className="w-[100%] gap-[20px] h-screen bg-[#F5F6FA] flex flex-col justify-between items-center pb-[64px] pt-[64px]">
-        <div className="max-w-[730px] w-full flex flex-col gap-[20px] overflow-y-auto">
+      <div className="  w-full gap-[20px] h-screen bg-[#F5F6FA] flex flex-col justify-between pl-[10px] pr-[10px] items-center pb-[64px] pt-[64px]">
+        <div
+          className="max-w-[730px] w-full flex flex-col gap-[20px] overflow-y-auto
+           [&::-webkit-scrollbar]:w-1
+           [&::-webkit-scrollbar-track]:bg-white
+           [&::-webkit-scrollbar-thumb]:bg-white
+           dark:[&::-webkit-scrollbar-track]:bg-[#C5C6EF]
+           dark:[&::-webkit-scrollbar-thumb]:bg-[#5357B6]
+            "
+        >
           {comment.map((coment, key) => {
             return (
               <NewComment
@@ -87,6 +92,7 @@ function Container() {
                 setReplyed={setReplyed}
                 replyed={replyed}
                 AddReply={AddReply}
+                setComment={setComment}
               />
             );
           })}
