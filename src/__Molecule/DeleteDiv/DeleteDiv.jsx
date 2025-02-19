@@ -1,15 +1,21 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "../../__Atom/Button/Button";
 
 function DeleteDiv({ DivAppear, DeleteComment, comment }) {
   const deleteRef = useRef(null);
 
-  function outsideClick(event) {
-    if (!deleteRef.current.contains(event.target)) {
-      DivAppear();
+  useEffect(() => {
+    function outsideClick(event) {
+      if (!deleteRef.current.contains(event.target)) {
+        DivAppear();
+      }
     }
-  }
-  document.addEventListener("mousedown", outsideClick);
+    document.addEventListener("mousedown", outsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", outsideClick);
+    };
+  }, []);
 
   function TaskDeleted() {
     DeleteComment(comment.id);
