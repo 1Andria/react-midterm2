@@ -4,3 +4,15 @@
   margin: 0;
   font-family: Rubik;
 }
+@layer base {
+  :root {
+    --tw-font-rubik: "Rubik", sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-rubik {
+    font-family: var(--tw-font-rubik);
+  }
+  
+}
