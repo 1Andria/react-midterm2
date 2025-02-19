@@ -12,7 +12,7 @@ function Edit({ onClick, setReplyed }) {
         className="cursor-pointer flex gap-[8px] items-center"
       >
         <img src={Pen} className="w-[14px] h-[14px]" alt="reply" />
-        <h3 className="text-[#5357B6] text-base font-normal max-[400px]:hidden">
+        <h3 className="text-[#5357B6] text-base font-normal max-[427px]:hidden">
           Edit
         </h3>
       </div>

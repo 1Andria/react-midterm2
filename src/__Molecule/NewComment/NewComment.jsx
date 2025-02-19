@@ -90,7 +90,9 @@ function NewComment({
                dark:[&::-webkit-scrollbar-track]:bg-[#C5C6EF]
                dark:[&::-webkit-scrollbar-thumb]:bg-[#5357B6]  "
             >
-              <p>{comment.information}</p>
+              <p className="text-[#67727E] text-[16px]">
+                {comment.information}
+              </p>
             </div>
           )}
           {edit && (
@@ -105,7 +107,7 @@ function NewComment({
           )}
           <div className="flex w-full justify-between items-center min-[620px]:hidden pt-[20px]">
             <Likes />
-            <div className="flex gap-[15px] max-[400px]:gap-[30px] ">
+            <div className="flex gap-[15px] max-[427px]:gap-[30px] ">
               <Reply
                 setEdit={setEdit}
                 edit={edit}
@@ -127,10 +129,10 @@ function NewComment({
         />
       )}
 
-      <div className="pl-[45px] max-[620px]:pl-[10px]">
-        <div className="flex justify-end pl-[10px] border-l-[2px] border-l-[#E9EBF0] ">
+      <div className="  max-[675px]:pl-[10px]">
+        <div className="flex justify-end border-l-[2px] border-l-[#E9EBF0] ">
           {comment.reply.length > 0 && (
-            <div className="ml-[40px] flex flex-col gap-[10px] max-w-[632px] w-full">
+            <div className="flex flex-col gap-[10px] max-w-[632px] w-full">
               {comment.reply.map((reply) => (
                 <NewComment
                   key={reply.id}
